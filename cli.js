@@ -1,16 +1,13 @@
 #!/usr/bin/env node
 
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 
-// コマンドを実行
-exec('npx http-server', (error, stdout, stderr) => {
-  if (error) {
-    console.error(`Error: ${error.message}`);
-    return;
-  }
-  if (stderr) {
-    console.error(`Stderr: ${stderr}`);
-    return;
-  }
-  console.log(`Output: ${stdout}`);
+// npx http-server コマンドを実行
+const serverProcess = spawn('npx', ['http-server'], {
+  stdio: 'inherit'  // 標準入力/出力/エラーを親プロセス（つまりコンソール）と共有
+});
+
+// サーバープロセスが終了したときの処理
+serverProcess.on('close', (code) => {
+  console.log(`http-server stopped with exit code ${code}`);
 });
