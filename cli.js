@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+console.log('my-cli is running!');
+
 const { spawn } = require('child_process');
 
 // npx http-server コマンドを実行
