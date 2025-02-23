@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-console.log('my-cli is running!');
+const packageJson = require('./package.json');
+console.log(`my-cli v${packageJson.version} is running!`);
 
 const { spawn } = require('child_process');
 
